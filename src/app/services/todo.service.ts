@@ -7,23 +7,21 @@ import { Itodo } from '../modules/todo.interface';
 })
 export class TodoService {
 
-private  mock : Itodo[] = [
-  {id:1,"title":"Cat, toddy","description":"Paradoxurus hermaphroditus","isCompleted":false,"isArchived":false,"endDate":"9/22/2022", selected: true},
-  {id:2,"title":"Civet cat","description":"Bassariscus astutus","isCompleted":false,"isArchived":false,"endDate":"5/1/2022",  selected: false},
-  {id:3,"title":"Trumpeter, green-winged","description":"Psophia viridis","isCompleted":false,"isArchived":false,"endDate":"10/9/2022" ,selected: false},
-  {id:4,"title":"Fox, bat-eared","description":"Otocyon megalotis","isCompleted":false,"isArchived":false,"endDate":"10/7/2022" ,selected: false},
-  {id:5,"title":"Grouse, sage","description":"Centrocercus urophasianus","isCompleted":false,"isArchived":false,"endDate":"5/14/2022" ,selected: false},
-  {id:6,"title":"Boa, emerald green tree","description":"Boa caninus","isCompleted":false,"isArchived":false,"endDate":"12/15/2022" ,selected: false}
-  ];
+private  todos: Itodo[] = [];
   
-  private _todoSubject: BehaviorSubject<Array<Itodo>> = new BehaviorSubject(this.mock);
+  private _todoSubject: BehaviorSubject<Array<Itodo>> = new BehaviorSubject(this.todos);
 
-  private _singleTodoSunject: BehaviorSubject<Itodo> = new BehaviorSubject(this.mock[0]);
+  private _singleTodoSunject: BehaviorSubject<Itodo> = new BehaviorSubject(
+   this.todos.length? this.todos[0]:null);
   constructor() { };
 
   public getTodos(): Observable<Array<Itodo>>{
     return this._todoSubject.asObservable();
   }
+
+  // public setTodos(todo:Itodo){
+  //   this.todos.push(todo);
+  // }
 
   public getSelectedTodo(): Observable<Itodo>{
     return this._singleTodoSunject.asObservable();
@@ -33,4 +31,12 @@ private  mock : Itodo[] = [
     this._singleTodoSunject.value.selected = false;
     this._singleTodoSunject.next(todo);
 }
+
+public addNewTodo(todo: Itodo):void{
+  console.log(todo);
+  const existingTodos = this._todoSubject.value;
+  existingTodos.push(todo);
+  this._todoSubject.next(existingTodos);
+}
+
 }

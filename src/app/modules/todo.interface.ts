@@ -1,5 +1,5 @@
 export interface Itodo{
-    id: number;
+    id: string;
     title: string;
     description: string;
     isCompleted: boolean;
