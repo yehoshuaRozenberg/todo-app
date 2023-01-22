@@ -1,1 +1,25 @@
-<p>new-todo works!</p>
+<form #f="ngForm" (ngSubmit)="onNewTodoSubmit()">
+    <p>
+    <mat-form-field appearance="outline">
+        <mat-label>todo name</mat-label>
+        <input ngModel name="title" matInput placeholder="what is your task?">
+      </mat-form-field>
+</p>
+<p>
+      <mat-form-field appearance="outline">
+        <mat-label>todo description</mat-label>
+        <input ngModel name="description" matInput placeholder="what is your task?">
+      </mat-form-field>
+    </p>
+   <p>
+      <mat-form-field appearance="fill">
+        <mat-label>date</mat-label>
+        <input ngModel name="endDate" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+ </p>   
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+   
+</form>
