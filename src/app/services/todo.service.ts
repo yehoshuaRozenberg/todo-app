@@ -16,6 +16,12 @@ private  todos: Itodo[] = [];
   constructor() { };
 
   public getTodos(): Observable<Array<Itodo>>{
+    if(!this._todoSubject.value.length){
+     const todoString = localStorage.getItem("todos");
+     if(todoString){
+     const existingTodos = JSON.parse(todoString);
+     this._todoSubject.next(existingTodos);
+     }}
     return this._todoSubject.asObservable();
   }
 
@@ -28,7 +34,7 @@ private  todos: Itodo[] = [];
   }
 
   public setSelectedTodo(todo: Itodo): void{
-    this._singleTodoSunject.value.selected = false;
+    // this._singleTodoSunject.value.selected = false;
     this._singleTodoSunject.next(todo);
 }
 
@@ -37,6 +43,10 @@ public addNewTodo(todo: Itodo):void{
   const existingTodos = this._todoSubject.value;
   existingTodos.push(todo);
   this._todoSubject.next(existingTodos);
+  localStorage.setItem("todos", JSON.stringify(existingTodos))
 }
 
+public saveTodosList():void{
+  localStorage.setItem("todos", JSON.stringify(this._todoSubject.value));
+}
 }
