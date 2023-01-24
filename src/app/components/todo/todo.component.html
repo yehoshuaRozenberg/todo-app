@@ -1,12 +1,12 @@
-<mat-card class="todo-card" *ngIf="getTodo() && !getTodo().isArchived" >
-    <mat-card-header>
-      <mat-card-title>{{getTodo().title}}</mat-card-title>
-      <mat-card-subtitle>{{getTodo().description}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions>
-      <!-- <button mat-button (click)="onCompletedTodo(todo)">COMPLETE</button> -->
-      <button mat-raised-button color="primary" (click)="onCompletedTodo()">COMPLETE</button>
-      <button mat-raised-button color="warn" (click)="onArchivedTodo()">ARCHIVE</button>
+<mat-card class="todo-card" *ngIf="getTodo() && !getTodo().isArchived">
+  <mat-card-header>
+    <mat-card-title>{{getTodo().title}}</mat-card-title>
+    <mat-card-subtitle>{{getTodo().description}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onCompletedTodo()">COMPLETE</button>
+    <button mat-raised-button color="warn" (click)="onArchivedTodo()">ARCHIVE</button>
 
-    </mat-card-actions>
-  </mat-card>
+  </mat-card-actions>
+  <app-count-down [dDate]="getTodo().endDate"></app-count-down>
+</mat-card>

@@ -1,17 +1,20 @@
-.todos-container{
-padding: 20px;
-height: calc(100vh - 104px);
-display: flex;
-gap: 20px;
-.list-container{
-    width: 25%;
-}
-.todo-container{
-    width: 75%;
-}
-.add-new-todo-btn{
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-}
+.todos-container {
+    padding: 20px;
+    height: calc(100vh - 104px);
+    display: flex;
+    gap: 20px;
+
+    .list-container {
+        width: 25%;
+    }
+
+    .todo-container {
+        width: 75%;
+    }
+
+    .add-new-todo-btn {
+        position: fixed;
+        bottom: 45px;
+        right: 35px;
+    }
 }

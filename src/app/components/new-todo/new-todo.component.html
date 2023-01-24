@@ -1,32 +1,32 @@
 <form #f="ngForm" (ngSubmit)="onNewTodoSubmit()">
   <h2>Add new todo</h2>
-    <p>
+  <p>
     <mat-form-field appearance="outline">
-        <mat-label>todo name</mat-label>
-        <input required ngModel name="title" matInput placeholder="what is your task?">
-     <mat-error *ngIf= "f.submitted && f.controls['title']?.invalid">Title is requierd</mat-error>
-      </mat-form-field>
+      <mat-label>todo name</mat-label>
+      <input required ngModel name="title" matInput placeholder="what is your task?">
+      <mat-error *ngIf="f.submitted && f.controls['title']?.invalid">Title is requierd</mat-error>
+    </mat-form-field>
 
-</p>
-<p>
-      <mat-form-field appearance="outline">
-        <mat-label>todo description</mat-label>
-        <input required ngModel name="description" matInput placeholder="what is your task?">
-     <mat-error *ngIf= "f.submitted && f.controls['description']?.invalid">Description is requierd</mat-error>
-      </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>todo description</mat-label>
+      <input required ngModel name="description" matInput placeholder="what is your task?">
+      <mat-error *ngIf="f.submitted && f.controls['description']?.invalid">Description is requierd</mat-error>
+    </mat-form-field>
 
-    </p>
-   <p>
-      <mat-form-field appearance="fill">
-        <mat-label>date</mat-label>
-        <input required="true" ngModel name="endDate" matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf= "f.submitted && f.controls['endDate']?.invalid">Date is requierd</mat-error>
-      </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>date</mat-label>
+      <input required="true" [min]="minDate" ngModel name="endDate" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="f.submitted && f.controls['endDate']?.invalid">Date is requierd</mat-error>
+    </mat-form-field>
 
- </p>   
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-   
+  </p>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+
 </form>

@@ -13,30 +13,30 @@ import { TodoService } from '../services/todo.service';
   styleUrls: ['./todo-container.component.scss']
 })
 
-export class TodoContainerComponent implements OnInit, OnDestroy{
+export class TodoContainerComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-public todo: Itodo;
- public todos: Itodo[];
+  public todo: Itodo;
+  public todos: Itodo[];
 
-  constructor(public dialog:MatDialog, private todoService: TodoService){}
-  
+  constructor(public dialog: MatDialog, private todoService: TodoService) { }
+
 
   ngOnInit(): void {
     this.subscription.add(
-      this.todoService.getSelectedTodo().subscribe(data =>{
+      this.todoService.getSelectedTodo().subscribe(data => {
         this.todo = data;
       })
     )
     this.subscription.add(
-      this.todoService.getTodos().subscribe(data =>{
+      this.todoService.getTodos().subscribe(data => {
         this.todos = data;
       })
     )
   }
 
-ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
